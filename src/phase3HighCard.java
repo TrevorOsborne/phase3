@@ -14,10 +14,6 @@
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
-
-import cst338_gui_cards.Card;
-import cst338_gui_cards.Card.Suit;
-
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Random;

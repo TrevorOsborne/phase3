@@ -17,6 +17,10 @@
 
 import javax.swing.*;
 import javax.swing.border.TitledBorder;
+
+import cst338_gui_cards.Card;
+import cst338_gui_cards.Card.Suit;
+
 import java.awt.*;
 import java.util.Arrays;
 import java.util.Random;
@@ -64,6 +68,7 @@ public class phase3HighCard
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       // show everything to the user
+      myCardTable.validate();
       myCardTable.setVisible(true);
 
       // CREATE LABELS ----------------------------------------------------
@@ -431,7 +436,7 @@ class CardTable extends JFrame
       setTitle(title);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       getContentPane().setBackground(Color.GREEN);
-      setLayout(new GridLayout(3, 0));
+      setLayout(new GridLayout(4, 0));
       
       //Panels
       add(pnlComputerHand = new JPanel(new GridLayout(0, numCardsPerHand))); 
@@ -446,8 +451,8 @@ class CardTable extends JFrame
       pnlHumanHand.setSize(800, 200);
       pnlHumanHand.setBackground(Color.GREEN);
       
-      pnlControl = new JPanel();
-      pnlControl.setLayout(new GridBagLayout());
+      add(pnlControl = new JPanel());
+      pnlControl.setLayout(new GridLayout(0,1));
       pnlControl.setBackground(Color.GRAY);
       pnlControl.setBorder(controlTitle);
       
@@ -456,7 +461,7 @@ class CardTable extends JFrame
       JButton playButton = new JButton("Click to play");
       PlayListener plisten = new PlayListener(buttonNotPressed);
       playButton.addActionListener(plisten);
-      pnlControl.add(BorderLayout.PAGE_START,playButton);
+      pnlControl.add(playButton);
       
    }
    
@@ -710,6 +715,7 @@ class Card
    };
 
    // Public Static Data Members:
+   //order listed here dertermines value ranking for valueRanks() 
    public static final char[] LEGAL_VALUES =
    { 'A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'X' };
 
@@ -900,6 +906,21 @@ class Card
            
       return rankOrder;
       
+   }
+   
+   /*
+    * returns the index of a given card
+    */
+   private static int valueIndex(Card card)
+   {
+
+      for(int i = 0; i < LEGAL_VALUES.length; i++)
+      {
+         if(card.getValue() == LEGAL_VALUES[i])
+            return i;
+      }
+
+      return -1;
    }
    
    

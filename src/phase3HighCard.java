@@ -56,43 +56,6 @@ public class phase3HighCard
       myCardTable.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
       // show everything to the user
-      myCardTable.validate();
-      myCardTable.setVisible(true);
-
-      // CREATE LABELS ----------------------------------------------------
-      for (k = 0; k < NUM_CARDS_PER_HAND; k++)
-      {
-         computerLabels[k] = new JLabel(GUICards.getBackCardIcon());
-         humanLabels[k] = new JLabel(GUICards.getIcon(myDeck.dealCard()));
-      }
-
-      // labels for two random cards in the play region (simulating a computer/human
-      // play)
-      playedCardLabels[0] = new JLabel(GUICards.getIcon(myDeck.dealCard()));
-      for (i = 1; i < NUM_PLAYERS; i++)
-         playedCardLabels[i] = new JLabel(GUICards.getIcon(myDeck.dealCard()));
-
-      // labels for text for the two cards played by human and computer
-      JLabel humanPlayedTextLabel = new JLabel("You", JLabel.CENTER);
-      JLabel computerPlayedTextLabel = new JLabel("Computer", JLabel.CENTER);
-
-      // ADD LABELS TO PANELS -----------------------------------------
-      for (int q = 0; q < NUM_CARDS_PER_HAND; q++)
-      {
-         myCardTable.pnlComputerHand.add(computerLabels[q]);
-         myCardTable.pnlHumanHand.add(humanLabels[q]);
-      }
-
-      // These are added in the correct order to fill a 2X2 Grid Layout
-      myCardTable.pnlPlayArea.add(playedCardLabels[0]);
-      for (i = 1; i < NUM_PLAYERS; i++)
-      {
-         myCardTable.pnlPlayArea.add(playedCardLabels[i]);
-      }
-      myCardTable.pnlPlayArea.add(computerPlayedTextLabel);
-      myCardTable.pnlPlayArea.add(humanPlayedTextLabel);
-
-      // show everything to the user
       myCardTable.setVisible(true);
 
       // End of main()
@@ -126,17 +89,14 @@ public class phase3HighCard
                   computerCard.setIcon(null);
                   humanCard.setIcon(null);
 
-                  highCardGame.getHand(0).sort();
-                  highCardGame.getHand(1).sort();
-
                   computerPlay = highCardGame.getHand(0).playCard();
                   humanPlay = highCardGame.getHand(1).playCard();
 
                   computerCard.setIcon(GUICards.getIcon(computerPlay));
                   humanCard.setIcon(GUICards.getIcon(humanPlay));
 
-                  myCardTable.pnlPlayArea.add(humanCard);
                   myCardTable.pnlPlayArea.add(computerCard);
+                  myCardTable.pnlPlayArea.add(humanCard);
                   myCardTable.setVisible(true);
 
                   if (GUICards.rankAsInt(computerPlay.getValue()) < GUICards.rankAsInt(humanPlay.getValue()))

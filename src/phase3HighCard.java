@@ -113,7 +113,7 @@ public class phase3HighCard
       while (highCardGame.getNumCardsRemainingInDeck() > 0)
       {
          highCardGame.deal();
-         while (highCardGame.getHand(0).getNumCards() != -1)
+         while (highCardGame.getHand(0).getNumCards() > 0)
          {
             for (k = 0; k < highCardGame.getHand(1).getNumCards(); k++)
             {

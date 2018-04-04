@@ -58,7 +58,6 @@ public class phase3HighCard
       // show everything to the user
       myCardTable.setVisible(true);
 
-      // End of main()
       for (k = 0; k < NUM_PLAYERS; k++)
       {
          scores[k] = 0;
@@ -377,7 +376,7 @@ class CardTable extends JFrame
       TitledBorder controlTitle;
       controlTitle = BorderFactory.createTitledBorder("Game Info");
       // Default Table settings
-      setSize(800, 600);
+      setSize(800, 800);
       setTitle(title);
       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
       getContentPane().setBackground(Color.GREEN);
@@ -388,9 +387,11 @@ class CardTable extends JFrame
       pnlComputerHand.setSize(800, 200);
       pnlComputerHand.setBackground(Color.GREEN);
 
-      add(pnlPlayArea = new JPanel(new GridLayout(numPlayers, numCardsPerHand)));
+      add(pnlPlayArea = new JPanel(new GridLayout(2, 0)));
       pnlPlayArea.setSize(800, 200);
       pnlPlayArea.setBackground(Color.GREEN);
+      pnlPlayArea.setAlignmentY(JPanel.CENTER_ALIGNMENT);
+      pnlPlayArea.setAlignmentX(JPanel.CENTER_ALIGNMENT);
 
       add(pnlHumanHand = new JPanel(new GridLayout(0, numCardsPerHand)));
       pnlHumanHand.setSize(800, 200);
@@ -400,13 +401,20 @@ class CardTable extends JFrame
       pnlControl.setLayout(new GridLayout(0, 1));
       pnlControl.setBackground(Color.GRAY);
       pnlControl.setBorder(controlTitle);
+      pnlControl.setSize(800, 200);
 
       this.buttonNotPressed = new BooleanResult(true);
 
       JButton playButton = new JButton("Click to play");
       PlayListener plisten = new PlayListener(buttonNotPressed);
       playButton.addActionListener(plisten);
-      pnlControl.add(playButton);
+      JButton quitButton = new JButton("Exit");
+      quitButton.addActionListener(new CloseListener());
+      
+      JPanel buttonPanel = new JPanel(new GridLayout(1,1));
+      buttonPanel.add(playButton);
+      buttonPanel.add(quitButton);
+      pnlControl.add(buttonPanel);
 
    }
 
@@ -1234,6 +1242,14 @@ class Deck
    }
    // End of Deck Class
 
+}
+
+class CloseListener implements ActionListener
+{
+   public void actionPerformed(ActionEvent event)
+   {
+      System.exit(0);
+   }
 }
 
 class PlayListener implements ActionListener

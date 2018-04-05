@@ -241,7 +241,6 @@ class CardGameFramework
    public Card getCardFromDeck()
    {
       return deck.dealCard();
-
    }
 
    public int getNumCardsRemainingInDeck()
@@ -446,7 +445,6 @@ class CardTable extends JFrame
    public int getNumPlayers()
    {
       return numPlayers;
-
    }
    // End of CardTable Class
 
@@ -546,8 +544,8 @@ class GUICards
    /**
     * tunrIntIntoCardSuit - turns 0 .. 3 into "C", "D", "H", "S"
     * 
-    * @param j
-    *           - int to convert
+    * @param j - int to convert
+    *           
     * @return char - char representation
     */
    private static char turnIntIntoCardSuit(int j)
@@ -871,7 +869,6 @@ class Card
             }
          }
       }
-
    }
 
    /**
@@ -901,7 +898,6 @@ class Hand
 
    public Card playCard(int cardIndex)
    {
-
       return null;
    }
 
@@ -953,7 +949,6 @@ class Hand
       for (int i = 0; i < numCards; i++)
       {
          tempString[i] = (myCards[i].toString() + " ");
-
       }
       return Arrays.toString(tempString);
    }
@@ -1120,7 +1115,7 @@ class Deck
     *
     * @param k - checks if this value is out of range for number of cards
     * 
-    * @return -
+    * @return - a copy of the Card if its valid
     */
    public Card inspectCard(int k)
    {
@@ -1198,15 +1193,14 @@ class Deck
       }
       cards[topCard++] = new Card(card);
       return true;
-
    }
 
    /**
     * Removes specific card from the deck and puts the current top card into its
     * place
     * 
-    * @param card
-    *           - the specific card you wish to remove
+    * @param card - the specific card you wish to remove
+    *           
     * @return - false if card to remove is not in deck
     */
    public boolean removeCard(Card card)
